@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Form, Col, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class StartForm extends Component {
   constructor(props) {
@@ -15,7 +16,11 @@ export default class StartForm extends Component {
 
   makeRangeArr = () => {
     var list = [];
-    for (var i = this.state.range_from; i <= this.state.range_to; i++) {
+    for (
+      var i = parseInt(this.state.range_from);
+      i <= this.state.range_to;
+      i++
+    ) {
       list.push(i);
     }
     console.log(list);
@@ -102,10 +107,9 @@ export default class StartForm extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-
-          <Button variant="dark" onClick={this.onPlayClick}>
-            PLAY
-          </Button>
+          <Link to={{ pathname: "/game", setting: { ...this.state } }}>
+            <Button variant="dark">PLAY</Button>
+          </Link>
         </Form>
       </Container>
     );
